@@ -11,7 +11,7 @@ import pl.sda.springproject.console.ConsoleOutput;
 
 @SpringBootApplication
 public class SpringProjectApplication implements CommandLineRunner {
-    private String appName = "Moja aplikacja konsolowa w Spring!";
+    private String appName = "Moja aplikacja konsolowa w Spring!!!";
     private ConsoleInput input;
     private ConsoleOutput output;
     private Calculator calculator;
