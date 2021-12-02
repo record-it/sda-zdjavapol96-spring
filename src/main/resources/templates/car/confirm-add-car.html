@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm car</title>
+</head>
+<body>
+    <h3>Dodałeś samochód</h3>
+    <p>model: <span th:text="${car.getModel()}"></span></p>
+    <p>marka: <span th:text="${car.getBrand()}"></span></p>
+    <p>id: <span th:text="${car.getId()}"></span></p>
+    <p>rok produkcji: <span th:text="${car.getProductionYear()}"></span></p>
+</body>
+</html>

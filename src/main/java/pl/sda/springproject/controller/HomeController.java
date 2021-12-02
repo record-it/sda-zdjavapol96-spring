@@ -12,9 +12,8 @@ public class HomeController {
     int counter = 0;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
     public String home(){
-        return "Hello from Spring";
+        return "index";
     }
 
     @GetMapping("/hello")
