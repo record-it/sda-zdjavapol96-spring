@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm book</title>
+</head>
+<body>
+    <h3>Dodałeś książkę</h3>
+    <p>tytuł: <span th:text="${book.getTitle()}"></span></p>
+    <p>autor: <span th:text="${book.getAuthor()}"></span></p>
+    <p>id: <span th:text="${book.getId()}"></span></p>
+    <p>rating: <span th:text="${book.getRating()}"></span></p>
+</body>
+</html>
