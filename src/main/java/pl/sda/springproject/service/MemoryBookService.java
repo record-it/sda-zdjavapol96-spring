@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 @Service
 public class MemoryBookService implements BookService {
@@ -31,7 +32,11 @@ public class MemoryBookService implements BookService {
 
     @Override
     public List<Book> findAll() {
-        return new ArrayList<>(books.values());
+        return new ArrayList<>(books.values())
+                .stream()
+                .sorted((book1, book2) -> Integer.compare(book2.getRating(), book1.getRating()))
+                .collect(Collectors.toList());
+
     }
 
     @Override
