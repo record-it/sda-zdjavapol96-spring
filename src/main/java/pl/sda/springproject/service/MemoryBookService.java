@@ -1,0 +1,44 @@
+package pl.sda.springproject.service;
+
+import org.springframework.stereotype.Service;
+import pl.sda.springproject.dto.BookDto;
+import pl.sda.springproject.model.Book;
+import pl.sda.springproject.service.BookService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+
+@Service
+public class MemoryBookService implements BookService {
+
+    private Map<Long, Book> books = new HashMap<>();
+    private AtomicLong index = new AtomicLong(0);
+
+    @Override
+    public Book add(BookDto newBook) {
+        final Book book = Book.builder()
+                .author(newBook.getAuthor())
+                .title(newBook.getTitle())
+                .id(index.incrementAndGet())
+                .rating(0)
+                .build();
+        books.put(book.getId(), book);
+        return book;
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return new ArrayList<>(books.values());
+    }
+
+    @Override
+    public void rateBook(long bookId, int rating) {
+        Book book = books.get(bookId);
+        if (book != null){
+            book.setRating(book.getRating() + rating);
+        }
+    }
+}
