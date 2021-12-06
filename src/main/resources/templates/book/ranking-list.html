@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking książek</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Autor
+        </th>
+        <th>
+            Liczba głosów
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="book" type="pl.sda.springproject.model.Book"*/-->
+    <tr th:each="book:${books}">
+        <td th:text="${book.getTitle()}" th:if="${book.getId() == bookId}" style="background-color: coral">
+            Tytuł
+        </td>
+        <td th:text="${book.getTitle()}" th:unless="${book.getId() == bookId}">
+            Tytuł
+        </td>
+        <td th:text="${book.getAuthor()}">
+            Autor
+        </td>
+        <td th:text="${book.getRating()}">
+            Punkty
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+<ul>
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <a href="/book/add">Dodaj książkę</a>
+    </li>
+</ul>
+</body>
+</html>

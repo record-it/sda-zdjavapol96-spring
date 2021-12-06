@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zagłosuj</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Autor
+        </th>
+        <th>
+            Oddaj głos
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="book" type="pl.sda.springproject.model.Book"*/-->
+    <tr th:each="book:${books}">
+        <td th:text="${book.getTitle()}">
+            Tytuł
+        </td>
+        <td th:text="${book.getAuthor()}">
+            Autor
+        </td>
+        <td>
+            <form method="post">
+                <input type="hidden" th:name="id" th:value="${book.getId()}">
+                <button type="submit">Głosuj</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<ul>
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <a href="/book/add">Dodaj książkę</a>
+    </li>
+</ul>
+</body>
+</html>
