@@ -5,10 +5,7 @@ import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
 import pl.sda.springproject.service.BookService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -45,5 +42,10 @@ public class MemoryBookService implements BookService {
         if (book != null){
             book.setRating(book.getRating() + rating);
         }
+    }
+
+    @Override
+    public Optional<Book> findById(long id) {
+        return Optional.ofNullable(books.get(id));
     }
 }

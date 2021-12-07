@@ -4,10 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.springproject.dto.CarDto;
 import pl.sda.springproject.model.Car;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -34,4 +31,11 @@ public class MemoryCarService implements CarService{
     public List<Car> findAll() {
         return new ArrayList<>(cars.values());
     }
+
+    @Override
+    public Optional<Car> findById(long id) {
+        return Optional.ofNullable(cars.get(id));
+    }
+
+
 }
