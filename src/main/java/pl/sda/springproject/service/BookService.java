@@ -14,4 +14,8 @@ public interface BookService {
     void deleteById(long id);
 
     Book update(Book ebook);
+
+    Book updateTitle(long id, String newTitle);
+
+    Book updateAuthor(long id, String newAuthor);
 }

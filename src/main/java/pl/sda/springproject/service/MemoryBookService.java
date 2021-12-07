@@ -59,4 +59,18 @@ public class MemoryBookService implements BookService {
         books.put(ebook.getId(), ebook);
         return ebook;
     }
+
+    @Override
+    public Book updateTitle(long id, String newTitle){
+        books.get(id).setTitle(newTitle);
+        return books.get(id);
+    }
+
+    @Override
+    public Book updateAuthor(long id, String newAuthor){
+        books.get(id).setAuthor(newAuthor);
+        return books.get(id);
+    }
+
+
 }

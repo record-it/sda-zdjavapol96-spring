@@ -7,6 +7,7 @@ import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
 import pl.sda.springproject.service.BookService;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class RestBookController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Book> add(@RequestBody BookDto dto){
+    public ResponseEntity<Book> add(@Valid @RequestBody BookDto dto){
         final Book book = bookService.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(book);
@@ -55,6 +56,25 @@ public class RestBookController {
 
     @PutMapping("")
     public ResponseEntity<Book> updateEntity(@RequestBody Book book){
-        return ResponseEntity.ok(bookService.update(book));
+        //TODO do późniejszej poprawy, przenieść do serwisu!!!
+        if (bookService.findById(book.getId()).isPresent()){
+            return ResponseEntity.ok(bookService.update(book));//edycja istniejącej książki
+        } else {
+            return ResponseEntity.status(HttpStatus.CREATED).body(bookService.update(book)); //dodanie nowej książki
+        }
+
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Book> updateProperty(@RequestBody BookDto newValues,
+                                               @PathVariable long id){
+        //TODO przenieść do serwisu
+        if (newValues.getAuthor() != null){
+            return ResponseEntity.ok(bookService.updateAuthor(id, newValues.getAuthor()));
+        }
+        if (newValues.getTitle() != null){
+            return ResponseEntity.ok(bookService.updateTitle(id, newValues.getTitle()));
+        }
+        return ResponseEntity.badRequest().build();
     }
 }
