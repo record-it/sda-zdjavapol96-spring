@@ -46,4 +46,15 @@ public class RestBookController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id){
+        bookService.deleteById(id);
+    }
+
+
+    @PutMapping("")
+    public ResponseEntity<Book> updateEntity(@RequestBody Book book){
+        return ResponseEntity.ok(bookService.update(book));
+    }
 }

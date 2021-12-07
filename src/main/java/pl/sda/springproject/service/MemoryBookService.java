@@ -3,7 +3,6 @@ package pl.sda.springproject.service;
 import org.springframework.stereotype.Service;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
-import pl.sda.springproject.service.BookService;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -47,5 +46,17 @@ public class MemoryBookService implements BookService {
     @Override
     public Optional<Book> findById(long id) {
         return Optional.ofNullable(books.get(id));
+    }
+
+    @Override
+    public void deleteById(long id) {
+        books.remove(id);
+    }
+
+    @Override
+    public Book update(Book ebook){
+        books.remove(ebook.getId());
+        books.put(ebook.getId(), ebook);
+        return ebook;
     }
 }

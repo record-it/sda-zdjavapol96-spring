@@ -25,4 +25,11 @@ public class RestCarController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(carService.add(dto));
     }
+
+    @DeleteMapping("/api/v1/cars/{id}")
+    public void delete(@PathVariable long id){
+        carService.deleteById(id);
+    }
+
+
 }

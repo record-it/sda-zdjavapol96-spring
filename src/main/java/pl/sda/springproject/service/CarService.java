@@ -10,4 +10,6 @@ public interface CarService {
     Car add(CarDto carDto);
     List<Car> findAll();
     Optional<Car> findById(long id);
+
+    void deleteById(long id);
 }

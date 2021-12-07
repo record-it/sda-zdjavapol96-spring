@@ -37,5 +37,9 @@ public class MemoryCarService implements CarService{
         return Optional.ofNullable(cars.get(id));
     }
 
+    @Override
+    public void deleteById(long id){
+        cars.remove(id);
+    }
 
 }

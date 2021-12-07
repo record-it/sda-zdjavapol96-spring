@@ -11,4 +11,7 @@ public interface BookService {
     List<Book> findAll();
     void rateBook(long bookId, int rating);
     Optional<Book> findById(long id);
+    void deleteById(long id);
+
+    Book update(Book ebook);
 }
