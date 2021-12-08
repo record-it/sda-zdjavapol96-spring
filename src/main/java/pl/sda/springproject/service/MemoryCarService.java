@@ -2,8 +2,10 @@ package pl.sda.springproject.service;
 
 import org.springframework.stereotype.Service;
 import pl.sda.springproject.dto.CarDto;
+import pl.sda.springproject.exception.TooOldCarException;
 import pl.sda.springproject.model.Car;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -23,6 +25,9 @@ public class MemoryCarService implements CarService{
                 .productionYear(carDto.getProductionYear())
                 .id(index.incrementAndGet())
                 .build();
+        if (LocalDate.now().getYear() - car.getProductionYear() > 20){
+            throw new TooOldCarException("Zbyt stary samochód", car.getProductionYear());
+        }
         cars.put(car.getId(), car);
         return car;
     }

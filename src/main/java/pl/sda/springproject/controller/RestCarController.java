@@ -7,6 +7,8 @@ import pl.sda.springproject.dto.CarDto;
 import pl.sda.springproject.model.Car;
 import pl.sda.springproject.service.CarService;
 
+import javax.validation.Valid;
+
 @RestController
 public class RestCarController {
     private final CarService carService;
@@ -21,7 +23,7 @@ public class RestCarController {
     }
 
     @PostMapping("/api/v1/cars")
-    public ResponseEntity<Car> add(@RequestBody CarDto dto){
+    public ResponseEntity<Car> add(@Valid  @RequestBody CarDto dto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(carService.add(dto));
     }

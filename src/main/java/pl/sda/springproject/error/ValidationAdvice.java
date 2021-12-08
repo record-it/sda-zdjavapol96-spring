@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pl.sda.springproject.exception.TooOldCarException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,5 +23,14 @@ public class ValidationAdvice {
                     errorsAsJson.put( ((FieldError) error).getField(), error.getDefaultMessage());
                 });
         return errorsAsJson;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(TooOldCarException.class)
+    public Map<String, Object> handleTooOldCarException(TooOldCarException e){
+        Map <String, Object> errorsAsJson = new HashMap<>();
+        errorsAsJson.put("error", e.getMessage());
+        errorsAsJson.put("productionYear", e.getProductionYear());
+        return  errorsAsJson;
     }
 }
