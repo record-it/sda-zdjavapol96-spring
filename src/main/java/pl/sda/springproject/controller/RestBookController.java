@@ -1,5 +1,7 @@
 package pl.sda.springproject.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,16 +15,15 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/books")
 public class RestBookController {
-    private  final BookService bookService;
 
-    public RestBookController(BookService bookService) {
-        this.bookService = bookService;
-    }
+    @Qualifier("JpaBookService")
+    @Autowired
+    private BookService bookService;
+
 
     @GetMapping("")
     public List<Book> allBooks(){

@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-@Service
+@Service("MemoryBookService")
 public class MemoryBookService implements BookService {
 
     private Map<Long, Book> books = new HashMap<>();

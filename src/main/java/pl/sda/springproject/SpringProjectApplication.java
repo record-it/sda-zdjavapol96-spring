@@ -1,5 +1,7 @@
 package pl.sda.springproject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +17,14 @@ import java.time.LocalDate;
 
 @SpringBootApplication
 public class SpringProjectApplication implements CommandLineRunner {
-    private final BookService bookService;
+    @Qualifier(value = "MemoryBookService")
+    @Autowired
+    private BookService bookService;
     private final CarService carService;
     private final EbookService ebookService;
 
-    public SpringProjectApplication(BookService bookService, CarService carService, EbookService ebookService) {
+    @Autowired
+    public SpringProjectApplication(CarService carService, EbookService ebookService) {
         this.bookService = bookService;
         this.carService = carService;
         this.ebookService = ebookService;
