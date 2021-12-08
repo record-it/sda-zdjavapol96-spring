@@ -5,17 +5,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.dto.CarDto;
+import pl.sda.springproject.model.Author;
+import pl.sda.springproject.model.Ebook;
 import pl.sda.springproject.service.BookService;
 import pl.sda.springproject.service.CarService;
+import pl.sda.springproject.service.EbookService;
+
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class SpringProjectApplication implements CommandLineRunner {
     private final BookService bookService;
     private final CarService carService;
+    private final EbookService ebookService;
 
-    public SpringProjectApplication(BookService bookService, CarService carService) {
+    public SpringProjectApplication(BookService bookService, CarService carService, EbookService ebookService) {
         this.bookService = bookService;
         this.carService = carService;
+        this.ebookService = ebookService;
     }
 
     public static void main(String[] args) {
@@ -37,5 +44,18 @@ public class SpringProjectApplication implements CommandLineRunner {
                 .brand("Audi")
                 .productionYear(2020)
                 .build());
+        ebookService.add(
+                Ebook.builder()
+                        .author(
+                                Author.builder()
+                                        .id(2)
+                                        .name("Bloch")
+                                        .birthDate(LocalDate.of(1998, 10, 10))
+                                        .build()
+                        )
+                        .title("Java")
+                        .format("pdf")
+                        .build()
+        );
     }
 }

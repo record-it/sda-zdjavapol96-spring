@@ -2,6 +2,8 @@ package pl.sda.springproject.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
@@ -38,6 +40,9 @@ public class RestBookController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(book);
     }
+
+
+
 
     @PostMapping("/onlyId")
     public ResponseEntity<Map<String, Object>> addBook(@RequestBody BookDto bookDto){
