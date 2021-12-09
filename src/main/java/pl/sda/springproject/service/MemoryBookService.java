@@ -1,5 +1,6 @@
 package pl.sda.springproject.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
@@ -80,6 +81,11 @@ public class MemoryBookService implements BookService {
     @Override
     public void rateBook(long id) {
         throw new UnsupportedOperationException("Zaimplementuj!!");
+    }
+
+    @Override
+    public Page<Book> findPage(int page, int size) {
+        throw new UnsupportedOperationException();
     }
 
 

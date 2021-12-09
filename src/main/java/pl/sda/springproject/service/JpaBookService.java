@@ -1,11 +1,14 @@
 package pl.sda.springproject.service;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
 import pl.sda.springproject.repository.BookRepository;
+import pl.sda.springproject.repository.PagingBookRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +18,11 @@ import java.util.Optional;
 public class JpaBookService implements BookService{
 
     private final BookRepository bookRepository;
+    private final PagingBookRepository pagingBookRepository;
 
-    public JpaBookService(BookRepository bookRepository) {
+    public JpaBookService(BookRepository bookRepository, PagingBookRepository pagingBookRepository) {
         this.bookRepository = bookRepository;
+        this.pagingBookRepository = pagingBookRepository;
     }
 
     @Override
@@ -81,5 +86,9 @@ public class JpaBookService implements BookService{
             book.setRating(rating);
             bookRepository.save(book);
         }
+    }
+    @Override
+    public Page<Book> findPage(int page, int size){
+        return pagingBookRepository.findAll(PageRequest.of(page, size));
     }
 }

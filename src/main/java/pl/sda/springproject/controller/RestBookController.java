@@ -2,6 +2,7 @@ package pl.sda.springproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,9 +27,11 @@ public class RestBookController {
 
 
     @GetMapping("")
-    public List<Book> allBooks(){
-        return bookService.findAll();
+    public Page<Book> allBooks(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "2") int size){
+        return bookService.findPage(page, size);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> findById(@PathVariable long id){

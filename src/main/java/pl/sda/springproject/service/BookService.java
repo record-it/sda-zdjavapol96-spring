@@ -1,5 +1,6 @@
 package pl.sda.springproject.service;
 
+import org.springframework.data.domain.Page;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
 
@@ -22,4 +23,6 @@ public interface BookService {
     List<Book> ranking();
 
     void rateBook(long id);
+
+    Page<Book> findPage(int page, int size);
 }
