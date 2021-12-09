@@ -18,4 +18,8 @@ public interface BookService {
     Book updateTitle(long id, String newTitle);
 
     Book updateAuthor(long id, String newAuthor);
+
+    List<Book> ranking();
+
+    void rateBook(long id);
 }

@@ -1,8 +1,8 @@
 package pl.sda.springproject.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
 import pl.sda.springproject.repository.BookRepository;
@@ -37,7 +37,7 @@ public class JpaBookService implements BookService{
 
     @Override
     public void rateBook(long bookId, int rating) {
-
+        //TODO zadanie domowe
     }
 
     @Override
@@ -63,5 +63,23 @@ public class JpaBookService implements BookService{
     @Override
     public Book updateAuthor(long id, String newAuthor) {
         return null;
+    }
+
+    @Override
+    public List<Book> ranking(){
+        return bookRepository.findBooksRanking();
+    }
+
+    @Override
+    @Transactional
+    public void rateBook(long id){
+        final Optional<Book> opBook = bookRepository.findById(id);
+        if (opBook.isPresent()){
+            Book book = opBook.get();
+            int rating = book.getRating();
+            rating++;
+            book.setRating(rating);
+            bookRepository.save(book);
+        }
     }
 }

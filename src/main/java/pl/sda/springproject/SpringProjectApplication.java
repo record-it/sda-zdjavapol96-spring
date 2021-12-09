@@ -9,22 +9,24 @@ import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.dto.CarDto;
 import pl.sda.springproject.model.Author;
 import pl.sda.springproject.model.Ebook;
+import pl.sda.springproject.repository.BookRepository;
 import pl.sda.springproject.service.BookService;
 import pl.sda.springproject.service.CarService;
 import pl.sda.springproject.service.EbookService;
+import pl.sda.springproject.service.JpaBookService;
 
 import java.time.LocalDate;
 
 @SpringBootApplication
 public class SpringProjectApplication implements CommandLineRunner {
-    @Qualifier(value = "MemoryBookService")
-    @Autowired
     private BookService bookService;
     private final CarService carService;
     private final EbookService ebookService;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Autowired
-    public SpringProjectApplication(CarService carService, EbookService ebookService) {
+    public SpringProjectApplication(CarService carService, EbookService ebookService, JpaBookService bookService) {
         this.bookService = bookService;
         this.carService = carService;
         this.ebookService = ebookService;
@@ -44,6 +46,14 @@ public class SpringProjectApplication implements CommandLineRunner {
                 .author("Freeman")
                 .title("C#")
                 .build());
+        bookService.add(BookDto.builder()
+                .author("Freeman")
+                .title("ASP.NET")
+                .build());
+        bookService.add(BookDto.builder()
+                .author("Bloch")
+                .title("Effective Java")
+                .build());
         carService.add(CarDto.builder()
                 .model("A4")
                 .brand("Audi")
@@ -62,5 +72,9 @@ public class SpringProjectApplication implements CommandLineRunner {
                         .format("pdf")
                         .build()
         );
+
+        System.out.println(bookRepository.countByAuthor("Bloch"));
+        System.out.println(bookRepository.findBooksByAuthor("Bloch"));
+        System.out.println(bookRepository.findBooksByTitleContains("Ja"));
     }
 }

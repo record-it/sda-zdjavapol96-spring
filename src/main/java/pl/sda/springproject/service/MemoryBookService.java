@@ -72,5 +72,15 @@ public class MemoryBookService implements BookService {
         return books.get(id);
     }
 
+    @Override
+    public List<Book> ranking() {
+        throw new UnsupportedOperationException("Zaimplementuj!!");
+    }
+
+    @Override
+    public void rateBook(long id) {
+        throw new UnsupportedOperationException("Zaimplementuj!!");
+    }
+
 
 }

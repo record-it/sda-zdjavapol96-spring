@@ -68,7 +68,6 @@ public class RestBookController {
         } else {
             return ResponseEntity.status(HttpStatus.CREATED).body(bookService.update(book)); //dodanie nowej książki
         }
-
     }
 
     @PatchMapping("/{id}")
@@ -82,5 +81,15 @@ public class RestBookController {
             return ResponseEntity.ok(bookService.updateTitle(id, newValues.getTitle()));
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/ranking")
+    public List<Book> ranking(){
+        return bookService.ranking();
+    }
+
+    @PostMapping("/{id}/rating")
+    public void rateBook(@PathVariable long id){
+        bookService.rateBook(id);
     }
 }
