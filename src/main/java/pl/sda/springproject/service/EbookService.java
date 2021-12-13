@@ -13,4 +13,6 @@ public interface EbookService {
     Ebook add(Ebook ebook);
 
     Optional<Author> findAuthorById(long id);
+
+    List<Ebook> findEbooksByTag(String tag);
 }

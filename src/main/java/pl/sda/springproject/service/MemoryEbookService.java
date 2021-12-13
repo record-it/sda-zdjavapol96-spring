@@ -39,4 +39,9 @@ public class MemoryEbookService implements EbookService{
     public Optional<Author> findAuthorById(long id) {
         return Optional.empty();
     }
+
+    @Override
+    public List<Ebook> findEbooksByTag(String tag) {
+        return Collections.emptyList();
+    }
 }

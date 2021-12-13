@@ -19,7 +19,9 @@ public class Ebook {
     @EqualsAndHashCode.Include
     private long id;
     private String title;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Author> authors = new HashSet<>();
     private String format;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Tag> tags = new HashSet<>();
 }

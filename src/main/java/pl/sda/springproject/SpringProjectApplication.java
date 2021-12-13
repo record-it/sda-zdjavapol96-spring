@@ -9,6 +9,7 @@ import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.dto.CarDto;
 import pl.sda.springproject.model.Author;
 import pl.sda.springproject.model.Ebook;
+import pl.sda.springproject.model.Tag;
 import pl.sda.springproject.repository.BookRepository;
 import pl.sda.springproject.service.BookService;
 import pl.sda.springproject.service.CarService;
@@ -72,6 +73,21 @@ public class SpringProjectApplication implements CommandLineRunner {
                                         .build()
                                 )
                         ))
+                        .tags(
+                                new HashSet<>(
+                                        Set.of(
+                                                Tag.builder()
+                                                        .label("Java")
+                                                        .build(),
+                                                Tag.builder()
+                                                        .label("Programming")
+                                                        .build(),
+                                                Tag.builder()
+                                                        .label("Training")
+                                                        .build()
+                                        )
+                                )
+                        )
                         .title("Java")
                         .format("pdf")
                         .build()
