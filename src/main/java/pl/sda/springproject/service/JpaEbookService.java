@@ -51,4 +51,9 @@ public class JpaEbookService implements EbookService{
         ebook.setAuthors(ebookAuthors);
         return ebooks.save(ebook);
     }
+
+    @Override
+    public Optional<Author> findAuthorById(long id){
+        return authors.findById(id);
+    }
 }

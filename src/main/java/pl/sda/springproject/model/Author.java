@@ -23,6 +23,6 @@ public class Author {
     private String name;
     private String alterName;
     private LocalDate birthDate;
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
     private Set<Ebook> ebooks = new HashSet<>();
 }

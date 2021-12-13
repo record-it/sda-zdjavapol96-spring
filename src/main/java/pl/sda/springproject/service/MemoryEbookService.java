@@ -1,6 +1,7 @@
 package pl.sda.springproject.service;
 
 import org.springframework.stereotype.Service;
+import pl.sda.springproject.model.Author;
 import pl.sda.springproject.model.Ebook;
 
 import java.util.*;
@@ -32,5 +33,10 @@ public class MemoryEbookService implements EbookService{
         ebook.setId(index.incrementAndGet());
         ebooks.put(ebook.getId(), ebook);
         return  ebook;
+    }
+
+    @Override
+    public Optional<Author> findAuthorById(long id) {
+        return Optional.empty();
     }
 }

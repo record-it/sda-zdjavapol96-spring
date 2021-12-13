@@ -16,6 +16,8 @@ import pl.sda.springproject.service.EbookService;
 import pl.sda.springproject.service.JpaBookService;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 public class SpringProjectApplication implements CommandLineRunner {
@@ -61,13 +63,15 @@ public class SpringProjectApplication implements CommandLineRunner {
                 .build());
         ebookService.add(
                 Ebook.builder()
-                        .author(
+                        .authors(
+                                new HashSet<>(Set.of(
                                 Author.builder()
                                         .id(2)
                                         .name("Bloch")
                                         .birthDate(LocalDate.of(1998, 10, 10))
                                         .build()
-                        )
+                                )
+                        ))
                         .title("Java")
                         .format("pdf")
                         .build()
