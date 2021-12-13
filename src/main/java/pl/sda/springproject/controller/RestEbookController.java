@@ -1,8 +1,7 @@
 package pl.sda.springproject.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.springproject.dto.EbookDtoOut;
 import pl.sda.springproject.mapper.EbookMapper;
 import pl.sda.springproject.model.Ebook;
@@ -25,5 +24,10 @@ public class RestEbookController {
         return ebookService.findAll().stream()
                 .map(EbookMapper::mapToDtoOut)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Ebook> add(@RequestBody Ebook ebook){
+        return ResponseEntity.ok(ebookService.add(ebook));
     }
 }

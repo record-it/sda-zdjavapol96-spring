@@ -9,6 +9,5 @@ public interface EbookService {
     Optional<Ebook> findBydId(long id);
     List<Ebook> findAll();
     void delete(long id);
-
     Ebook add(Ebook ebook);
 }

@@ -32,7 +32,6 @@ public class RestBookController {
     }
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Book> findById(@PathVariable long id){
          return ResponseEntity.of(bookService.findById(id));

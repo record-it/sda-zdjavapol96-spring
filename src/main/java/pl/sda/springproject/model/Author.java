@@ -1,15 +1,28 @@
 package pl.sda.springproject.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private long id;
+    @Column(unique = true)
     private String name;
     private String alterName;
     private LocalDate birthDate;
+    @ManyToMany(mappedBy = "authors")
+    private Set<Ebook> ebooks = new HashSet<>();
 }
