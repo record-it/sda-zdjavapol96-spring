@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.springproject.dto.BookDto;
-import pl.sda.springproject.model.Book;
 import pl.sda.springproject.service.BookService;
 
 @Controller
