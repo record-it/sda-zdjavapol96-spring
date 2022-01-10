@@ -1,7 +1,6 @@
 package pl.sda.springproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +9,9 @@ import pl.sda.springproject.dto.CarDto;
 import pl.sda.springproject.model.Author;
 import pl.sda.springproject.model.Ebook;
 import pl.sda.springproject.model.Tag;
+import pl.sda.springproject.model.UserApp;
 import pl.sda.springproject.repository.BookRepository;
+import pl.sda.springproject.repository.UserAppRepository;
 import pl.sda.springproject.service.BookService;
 import pl.sda.springproject.service.CarService;
 import pl.sda.springproject.service.EbookService;
@@ -25,14 +26,16 @@ public class SpringProjectApplication implements CommandLineRunner {
     private BookService bookService;
     private final CarService carService;
     private final EbookService ebookService;
+    private final UserAppRepository userAppRepository;
     @Autowired
     private BookRepository bookRepository;
 
     @Autowired
-    public SpringProjectApplication(CarService carService, EbookService ebookService, JpaBookService bookService) {
+    public SpringProjectApplication(CarService carService, EbookService ebookService, JpaBookService bookService, UserAppRepository userAppRepository) {
         this.bookService = bookService;
         this.carService = carService;
         this.ebookService = ebookService;
+        this.userAppRepository = userAppRepository;
     }
 
     public static void main(String[] args) {
@@ -41,6 +44,20 @@ public class SpringProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        userAppRepository.save(
+                UserApp.builder()
+                        .email("ewa@op.pl")
+                        .password("$2a$12$f.EW5Zs49ExVkQs33u0O3.MBvienwh3Vn0nPe5BI7IR4XBhRUNrnC")
+                        .birth(LocalDate.of(2000,10,10))
+                        .build()
+        );
+        userAppRepository.save(
+                UserApp.builder()
+                        .email("adam@sda.pl")
+                        .password("$2a$12$f.EW5Zs49ExVkQs33u0O3.MBvienwh3Vn0nPe5BI7IR4XBhRUNrnC")
+                        .birth(LocalDate.of(1996,11,10))
+                        .build()
+        );
         bookService.add(BookDto.builder()
                 .author("Bloch")
                 .title("Java")

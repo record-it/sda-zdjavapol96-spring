@@ -24,13 +24,4 @@ public class ValidationAdvice {
                 });
         return errorsAsJson;
     }
-
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    @ExceptionHandler(TooOldCarException.class)
-//    public Map<String, Object> handleTooOldCarException(TooOldCarException e){
-//        Map <String, Object> errorsAsJson = new HashMap<>();
-//        errorsAsJson.put("error", e.getMessage());
-//        errorsAsJson.put("productionYear", e.getProductionYear());
-//        return  errorsAsJson;
-//    }
 }
