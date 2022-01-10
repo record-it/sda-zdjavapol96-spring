@@ -77,7 +77,7 @@ public class JpaBookService implements BookService{
 
     @Override
     @Transactional
-    public void rateBook(long id){
+    public void rateBook(long id, long userId, int rate){
         final Optional<Book> opBook = bookRepository.findById(id);
         if (opBook.isPresent()){
             Book book = opBook.get();

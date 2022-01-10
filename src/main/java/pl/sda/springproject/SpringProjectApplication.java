@@ -49,6 +49,7 @@ public class SpringProjectApplication implements CommandLineRunner {
                         .email("ewa@op.pl")
                         .password("$2a$12$f.EW5Zs49ExVkQs33u0O3.MBvienwh3Vn0nPe5BI7IR4XBhRUNrnC")
                         .birth(LocalDate.of(2000,10,10))
+                        .roles("ROLE_USER")
                         .build()
         );
         userAppRepository.save(
@@ -56,6 +57,7 @@ public class SpringProjectApplication implements CommandLineRunner {
                         .email("adam@sda.pl")
                         .password("$2a$12$f.EW5Zs49ExVkQs33u0O3.MBvienwh3Vn0nPe5BI7IR4XBhRUNrnC")
                         .birth(LocalDate.of(1996,11,10))
+                        .roles("ROLE_USER ROLE_ADMIN ROLE_POWER_USER")
                         .build()
         );
         bookService.add(BookDto.builder()

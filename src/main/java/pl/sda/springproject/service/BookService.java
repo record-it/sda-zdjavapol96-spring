@@ -22,7 +22,7 @@ public interface BookService {
 
     List<Book> ranking();
 
-    void rateBook(long id);
+    void rateBook(long bookId, long userId, int rate);
 
     Page<Book> findPage(int page, int size);
 }

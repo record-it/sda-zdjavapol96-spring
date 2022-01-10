@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.springproject.dto.BookDto;
 import pl.sda.springproject.model.Book;
+import pl.sda.springproject.model.UserApp;
 import pl.sda.springproject.service.BookService;
 
 import javax.validation.Valid;
@@ -91,7 +93,8 @@ public class RestBookController {
     }
 
     @PostMapping("/{id}/rating")
-    public void rateBook(@PathVariable long id){
-        bookService.rateBook(id);
+    public void rateBook(@PathVariable long id, @AuthenticationPrincipal UserApp user){
+        bookService.rateBook(id, user.getId(), 1);
+        System.out.println(user.getEmail());
     }
 }

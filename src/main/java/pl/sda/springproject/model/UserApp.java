@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,10 +34,17 @@ public class UserApp implements UserDetails {
     private LocalDate birth;
 
     private boolean locked;
+    //Uwaga! w roles mamy role oddzielone spacją np. ROLE_ADMIN ROLE_USER
+    private String roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_USER");
+        List<GrantedAuthority> autorities = new ArrayList<>();
+        final String[] roleArr = roles.split(" ");
+        for(String role: roleArr){
+            autorities.add(() -> role);
+        }
+        return autorities;
     }
 
     @Override

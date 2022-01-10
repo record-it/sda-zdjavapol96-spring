@@ -79,7 +79,7 @@ public class MemoryBookService implements BookService {
     }
 
     @Override
-    public void rateBook(long id) {
+    public void rateBook(long id, long userId, int rate) {
         throw new UnsupportedOperationException("Zaimplementuj!!");
     }
 
